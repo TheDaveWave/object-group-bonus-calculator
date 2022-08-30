@@ -58,19 +58,6 @@ function calculateIndividualEmployeeBonus( employee ) {
   return newObj;
 }
 
-// If their employee number is 4 digits long, this means they have been with the company for longer than 15 years, 
-// and should receive an additional 5%.
-
-// END SHOULD RETURN OBJECT EXAMPLE BELOW
-// {
-//   name: "David",
-//   bonusPercentage: 10%,
-//   totalCompensation: 70000,
-//   totalBonus: 6000
-// }
-
-// However, if their annual income is greater than $65,000, they should have their bonus adjusted down 1%.
-// No bonus can be above 13% or below 0% total.
 
 function fourDigit(employee) {
   if (employee.employeeNumber.length === 4) {
@@ -114,6 +101,7 @@ function bonusPercent(employee) {
 
   return sum;
 }
+
 function calcBonusDollar(employee) {
   return Math.round(bonusPercent(employee) * Number(employee.annualSalary));
 }
@@ -122,12 +110,9 @@ function totalCompensation(employee) {
   return calcBonusDollar(employee) + Number(employee.annualSalary);
 }
 
-
 function displayNewInfo(array) {
   let newArray = [];
   for (let employee of array) {
-    console.log("Here is our work:", employee);
-    // debugger;
     newArray.push(calculateIndividualEmployeeBonus(employee));
     console.log(calculateIndividualEmployeeBonus(employee));
   }
