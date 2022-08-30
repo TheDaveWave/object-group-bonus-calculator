@@ -61,7 +61,6 @@ function calculateIndividualEmployeeBonus( employee ) {
   return newObj;
 }
 
-
 function fourDigit(employee) {
   //checking if employee has a four digit employee code to qualify for 5% bonus
   if (employee.employeeNumber.length === 4) {
@@ -110,15 +109,18 @@ function bonusPercent(employee) {
 }
 
 function calcBonusDollar(employee) {
+  //calculate total bonus dollar amount and round to nearest dollar
   return Math.round(bonusPercent(employee) * Number(employee.annualSalary));
 }
 
 function totalCompensation(employee) {
+  //calculate total compensation
   return calcBonusDollar(employee) + Number(employee.annualSalary);
 }
 
 function displayNewInfo(array) {
   let newArray = [];
+  //loop through given array and log newEmployee Object and store in new array
   for (let employee of array) {
     newArray.push(calculateIndividualEmployeeBonus(employee));
     console.log(calculateIndividualEmployeeBonus(employee));
