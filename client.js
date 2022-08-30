@@ -119,13 +119,4 @@ function displayNewInfo(array) {
   return newArray;
 }
 
-// console.log("Atticus should have annual percentage of .04:", annualPercent(employees[0]));
-// console.log("Atticus should have eeAge of .05:", fourDigit(employees[0]));
-// console.log("Atticus should have annual adjustment should be 0:", checkAnnual(employees[0]));
-
-// console.log(`Atticus bonus is:${employees[0].annualSalary * (annualPercent(employees[0]) + fourDigit(employees[0]) + checkAnnual(employees[0]))}`);
-// console.log(annualPercent(employees[0]) + fourDigit(employees[0]) + checkAnnual(employees[0]));
-
-console.log(calculateIndividualEmployeeBonus(employees[0]));
-
 console.log(displayNewInfo(employees));
