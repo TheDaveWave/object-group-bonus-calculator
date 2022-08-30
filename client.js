@@ -1,3 +1,6 @@
+/// <reference path="jquery.js" />
+
+
 // array of employee objects
 const employees = [
   {
@@ -45,11 +48,11 @@ console.log('array of employee data: ',  employees );
 
 
 
-
 // This function will calculate 1 employee's bonus!
 //
 function calculateIndividualEmployeeBonus( employee ) {  
   let newObj = {};
+  //pushing exmployee bonus info into new object
   newObj.name = employee.name;
   newObj.bonusPercentage = bonusPercent(employee);
   newObj.totalCompensation = totalCompensation(employee);
@@ -60,6 +63,7 @@ function calculateIndividualEmployeeBonus( employee ) {
 
 
 function fourDigit(employee) {
+  //checking if employee has a four digit employee code to qualify for 5% bonus
   if (employee.employeeNumber.length === 4) {
     return 0.05;
   }
@@ -67,6 +71,7 @@ function fourDigit(employee) {
 }
 
 function checkAnnual(employee) {
+  //checking if employee exceeds 65000 salary cap and qualifies for 1% bonus reduction
   if(employee.annualSalary > 65000) {
     return -0.01
   }
@@ -74,6 +79,7 @@ function checkAnnual(employee) {
 }
 
 function annualPercent(employee) {
+  //switch to check if qualified for annual bonus percentage
   let percentBonus = 0;
   switch (employee.reviewRating) {
     case 3: 
@@ -92,6 +98,7 @@ function annualPercent(employee) {
 }
 
 function bonusPercent(employee) {
+  //calculating total bonus percentage and checking for 13% or 0% minimum
   let sum = annualPercent(employee) + fourDigit(employee) + checkAnnual(employee);
   if(sum < 0) {
     sum = 0;
