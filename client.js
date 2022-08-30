@@ -1,6 +1,7 @@
 /// <reference path="jquery.js" />
 
 
+
 // array of employee objects
 const employees = [
   {
@@ -46,7 +47,14 @@ console.log('array of employee data: ',  employees );
 // This is not a race. Everyone on your team should understand what is happening.
 // Ask questions when you don't.
 
+const formatCur = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+})
 
+$(document).ready(readyNow);
 
 // This function will calculate 1 employee's bonus!
 //
@@ -122,10 +130,21 @@ function displayNewInfo(array) {
   let newArray = [];
   //loop through given array and log newEmployee Object and store in new array
   for (let employee of array) {
-    newArray.push(calculateIndividualEmployeeBonus(employee));
-    console.log(calculateIndividualEmployeeBonus(employee));
+    let newInfo = calculateIndividualEmployeeBonus(employee);
+    newArray.push(newInfo);
+    console.log(newInfo);
+    let el = $('#bonusList');
+    el.append(`<li>Name: ${newInfo.name} Bonus Percentage: ${newInfo.bonusPercentage * 100}% Total Bonus: ${formatCur.format(newInfo.totalBonus)} Total Compensation: ${formatCur.format(newInfo.totalCompensation)}</li>`)
   }
   return newArray;
 }
 
-console.log(displayNewInfo(employees));
+function test () {
+  displayNewInfo(employees);
+}
+
+function readyNow() {
+  $('#calcBtn').on('click', test);
+}
+
+// console.log(displayNewInfo(employees));
