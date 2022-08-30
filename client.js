@@ -49,9 +49,98 @@ console.log('array of employee data: ',  employees );
 // This function will calculate 1 employee's bonus!
 //
 function calculateIndividualEmployeeBonus( employee ) {  
-  // your logic here
-  
-  
+  let newObj = {};
+  newObj.name = employee.name;
+  newObj.bonusPercentage = bonusPercent(employee);
+  newObj.totalCompensation = totalCompensation(employee);
+  newObj.totalBonus = calcBonusDollar(employee);
   // return new object with bonus results
-
+  return newObj;
 }
+
+// If their employee number is 4 digits long, this means they have been with the company for longer than 15 years, 
+// and should receive an additional 5%.
+
+// END SHOULD RETURN OBJECT EXAMPLE BELOW
+// {
+//   name: "David",
+//   bonusPercentage: 10%,
+//   totalCompensation: 70000,
+//   totalBonus: 6000
+// }
+
+// However, if their annual income is greater than $65,000, they should have their bonus adjusted down 1%.
+// No bonus can be above 13% or below 0% total.
+
+function fourDigit(employee) {
+  if (employee.employeeNumber.length === 4) {
+    return 0.05;
+  }
+  return 0;
+}
+
+function checkAnnual(employee) {
+  if(employee.annualSalary > 65000) {
+    return -0.01
+  }
+  return 0;
+}
+
+function annualPercent(employee) {
+  let percentBonus = 0;
+  switch (employee.reviewRating) {
+    case 3: 
+      percentBonus = .04;
+      break;
+    case 4:
+      percentBonus = .06;
+      break;
+    case 5:
+      percentBonus = .10;
+      break;
+    default:
+      percentBonus = 0;
+  }
+  return percentBonus;
+}
+
+function bonusPercent(employee) {
+  let sum = annualPercent(employee) + fourDigit(employee) + checkAnnual(employee);
+  if(sum < 0) {
+    sum = 0;
+  } else if (sum > 0.13) {
+    sum = 0.13
+  }
+
+  return sum;
+}
+function calcBonusDollar(employee) {
+  return Math.round(bonusPercent(employee) * Number(employee.annualSalary));
+}
+
+function totalCompensation(employee) {
+  return calcBonusDollar(employee) + Number(employee.annualSalary);
+}
+
+
+function displayNewInfo(array) {
+  let newArray = [];
+  for (let employee of array) {
+    console.log("Here is our work:", employee);
+    // debugger;
+    newArray.push(calculateIndividualEmployeeBonus(employee));
+    console.log(calculateIndividualEmployeeBonus(employee));
+  }
+  return newArray;
+}
+
+// console.log("Atticus should have annual percentage of .04:", annualPercent(employees[0]));
+// console.log("Atticus should have eeAge of .05:", fourDigit(employees[0]));
+// console.log("Atticus should have annual adjustment should be 0:", checkAnnual(employees[0]));
+
+// console.log(`Atticus bonus is:${employees[0].annualSalary * (annualPercent(employees[0]) + fourDigit(employees[0]) + checkAnnual(employees[0]))}`);
+// console.log(annualPercent(employees[0]) + fourDigit(employees[0]) + checkAnnual(employees[0]));
+
+console.log(calculateIndividualEmployeeBonus(employees[0]));
+
+console.log(displayNewInfo(employees));
