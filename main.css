@@ -1,5 +1,28 @@
 body {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    background-size: 100px 100px;
+    background-image: repeating-radial-gradient(brown, blue 25%, #3EB489 50%, transparent 40%);
+    color: white;
+    text-shadow: -2px 0 5px black, 0 2px 5px black, 2px 0 5px black, 0 -2px 5px black;
+
+}
+
+.container {
+    margin: 10px 0px;
+}
+
+button {
     align-items: center;
+    color: pink;
+    text-shadow: -2px 0 5px black, 0 2px 5px black, 2px 0 5px black, 0 -2px 5px black;
+}
+
+li {
+    list-style: none;
+    /* text-shadow: 0 0 6px 5px black ; */
+    text-shadow: -2px 0 5px black, 0 2px 5px black, 2px 0 5px black, 0 -2px 5px black;
+    /* background-color: rgba(0, 0, 0, 0.455); */
 }

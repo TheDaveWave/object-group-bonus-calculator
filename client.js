@@ -128,12 +128,13 @@ function totalCompensation(employee) {
 
 function displayNewInfo(array) {
   let newArray = [];
+  let el = $('#bonusList');
+  el.html("");
   //loop through given array and log newEmployee Object and store in new array
   for (let employee of array) {
     let newInfo = calculateIndividualEmployeeBonus(employee);
     newArray.push(newInfo);
     console.log(newInfo);
-    let el = $('#bonusList');
     el.append(`<li>Name: ${newInfo.name} Bonus Percentage: ${newInfo.bonusPercentage * 100}% Total Bonus: ${formatCur.format(newInfo.totalBonus)} Total Compensation: ${formatCur.format(newInfo.totalCompensation)}</li>`)
   }
   return newArray;
